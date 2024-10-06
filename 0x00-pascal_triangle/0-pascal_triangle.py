@@ -3,6 +3,8 @@
 
 
 def pascal_triangle(n):
+    """ Handle the core algorithm of pascal triangle. """
+
     if n <= 0:
         return []
 
