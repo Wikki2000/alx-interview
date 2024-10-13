@@ -15,4 +15,4 @@ def canUnlockAll(boxes):
             if key in unlock_keys:
                 attempted_key.add(key)
                 break
-    return unlock_keys == list(attempted_key)
+    return sorted(unlock_keys) == sorted(list(attempted_key))
