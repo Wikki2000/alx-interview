@@ -5,14 +5,17 @@
 
 
 def canUnlockAll(boxes):
-    """unlock a box using key"""
-    unlock_keys = [i for i in range(1, len(boxes))]
+    """
+    checks if all boxes have keys
+    """
+    allboxes = len(boxes)
+    explored = []
+    keys = [0]
 
-    attempted_key = set()
+    while len(explored) != allboxes and len(keys) != 0:
+        for key in boxes[keys[0]]:
+            if key not in explored and key not in keys and key < allboxes:
+                keys.append(key)
+        explored.append(keys.pop(0))
 
-    for box in boxes:
-        for key in box:
-            if key in unlock_keys:
-                attempted_key.add(key)
-                break
-    return sorted(unlock_keys) == sorted(list(attempted_key))
+    return len(explored) == allboxes

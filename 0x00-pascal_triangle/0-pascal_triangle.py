@@ -1,24 +1,26 @@
 #!/usr/bin/python3
-""" Print the pascal numbers. """
+"""
+0-pascal_triangle.py
+"""
 
 
 def pascal_triangle(n):
-    """ Handle the core algorithm of pascal triangle. """
-
+    """
+    Creates pascale trinagle
+    """
     if n <= 0:
         return []
 
-    triangle = [[1]]  # First row always assign to 1
+    pascal_array = [[] for i in range(n)]
 
-    # Iterate from row index 1
-    for i in range(1, n):
-        row = [1]  # Pascal triangle starts with 1
+    for i in range(n):
+        if i == 0:
+            pascal_array[i].append(1)
+            continue
 
-        for j in range(1, i):
-            row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
+        for j in range(i + 1):
+            up_left = pascal_array[i - 1][j - 1] if j != 0 else 0
+            up_right = pascal_array[i - 1][j] if j != i else 0
+            pascal_array[i].append(up_left + up_right)
 
-        row.append(1)  # Last item ends with one
-
-        triangle.append(row)
-
-    return triangle
+    return pascal_array
